@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Proyecto4_v1-2</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string-array name="options">
+        <item>Vivienda</item>
+        <item>Alimentación</item>
+        <item>Salud</item>
+        <item>Educación</item>
+        <item>Ropa</item>
+    </string-array>
+
+</resources>
