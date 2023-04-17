@@ -6,18 +6,26 @@ import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.Spinner;
 
 import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
 
+    private EditText campoValor;
+
+    private Spinner optionSpinner;
+
     private DatePickerDialog datePickerDialog;
     private Button dateButton;
+
+    private GastosSingleton mainSingleton = GastosSingleton.useSingleton();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,8 +34,9 @@ public class MainActivity extends AppCompatActivity {
         initDatePicker();
         dateButton =  findViewById(R.id.datePickerButton);
         dateButton.setText(getTodaysDate());
+        campoValor = (EditText) findViewById(R.id.editTextValor);
 
-        Spinner optionSpinner = (Spinner) findViewById(R.id.spinner);
+        optionSpinner = (Spinner) findViewById(R.id.spinnerTipos);
 
         ArrayAdapter<String> optionAdapter = new ArrayAdapter<String>(MainActivity.this,
                 android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.options));
@@ -100,5 +109,18 @@ public class MainActivity extends AppCompatActivity {
     public void startThirdActivity(View view){
         Intent intent = new Intent(MainActivity.this, ThirdActivity.class);
         startActivity(intent);
+    }
+
+    public void ingresarGasto(View view) {
+
+        String fecha = dateButton.getText().toString();
+        String valorString = campoValor.getText().toString();
+        double valor = Double.parseDouble(valorString);
+        String tipo = optionSpinner.getSelectedItem().toString();
+
+        mainSingleton.addGasto(fecha, valor, tipo);
+
+        Log.d("DEBUG", fecha + "  " + valorString + "   " + tipo );
+
     }
 }

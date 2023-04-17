@@ -1,23 +1,33 @@
 package com.example.proyecto4_v1_2;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.Spinner;
 
+import org.jetbrains.annotations.NonNls;
+
 import java.util.Calendar;
 
 public class SecondActivity extends AppCompatActivity {
 
+    private RecyclerView rv1;
     private DatePickerDialog datePickerDialog;
     private Button dateButton;
+
+    private GastosSingleton mainSingleton = GastosSingleton.useSingleton();
+
+    private GastosAdapter gastosAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +36,11 @@ public class SecondActivity extends AppCompatActivity {
         initDatePicker();
         dateButton = findViewById(R.id.datePickerButton);
         dateButton.setText(getTodaysDate());
+
+        gastosAdapter = new GastosAdapter();
+
+        rv1 = (RecyclerView) findViewById(R.id.recyclerGastos);
+        rv1.setAdapter(gastosAdapter);
 
         Spinner optionSpinner = (Spinner) findViewById(R.id.spinner);
 
@@ -97,5 +112,19 @@ public class SecondActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    private class GastosAdapter extends RecyclerView.Adapter<GastosAdapter.GastosAdapterHolder>
+    {
+        @NonNull
+        @Override
+        public GastosAdapter onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
+        {
+            return new GastosAdapterHolder(getLayoutInflater().inflate(R.layout))
+        }
+    }
 
+    public void resetRecycler(View view) {
+    }
+
+    public void filtrarRecycler(View view) {
+    }
 }
