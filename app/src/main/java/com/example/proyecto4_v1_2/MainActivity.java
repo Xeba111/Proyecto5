@@ -120,6 +120,9 @@ public class MainActivity extends AppCompatActivity {
 
         mainSingleton.addGasto(fecha, valor, tipo);
 
+        campoValor.setText("0.0");
+        dateButton.setText(getTodaysDate());
+
         Log.d("DEBUG", fecha + "  " + valorString + "   " + tipo );
 
     }
