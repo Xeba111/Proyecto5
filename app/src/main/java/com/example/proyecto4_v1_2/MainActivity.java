@@ -1,6 +1,7 @@
 package com.example.proyecto4_v1_2;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
@@ -10,12 +11,16 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.Spinner;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
-
+    ArrayList<Gastos> gastos;
+    RecyclerView rv1;
+    EditText et1;
     private DatePickerDialog datePickerDialog;
     private Button dateButton;
 
@@ -23,6 +28,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        et1= findViewById(R.id.editTextNumber);
+
+
         initDatePicker();
         dateButton =  findViewById(R.id.datePickerButton);
         dateButton.setText(getTodaysDate());
@@ -91,9 +99,7 @@ public class MainActivity extends AppCompatActivity {
         datePickerDialog.show();
     }
 
-    public void launchSegundaPantalla(View view) {
 
-    }
 
     public void startSecondActivity(View view){
         Intent intent = new Intent(MainActivity.this, SecondActivity.class);

@@ -1,6 +1,7 @@
 package com.example.proyecto4_v1_2;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
@@ -12,10 +13,12 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.Spinner;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
 public class SecondActivity extends AppCompatActivity {
-
+    ArrayList<Gastos> gastos;
+    RecyclerView rv1;
     private DatePickerDialog datePickerDialog;
     private Button dateButton;
 
@@ -23,6 +26,28 @@ public class SecondActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
+        gastos =new ArrayList<Gastos>();
+       // rv1 = findViewById(R.id.)
+        gastos.add(new Gastos("23 ENE 2023", 345,"Alimentacion"));
+        gastos.add(new Gastos("15 FEB 2023", 25,"Ropa"));
+        gastos.add(new Gastos("18 ENE 2023", 10,"Vivienda"));
+        gastos.add(new Gastos("26 MAR 2023", 150,"Educación"));
+        gastos.add(new Gastos("09 ABR 2023", 90,"Vivienda"));
+        gastos.add(new Gastos("10 ENE 2023", 56,"Alimentación"));
+        gastos.add(new Gastos("12 FEB 2023", 89,"Vivienda"));
+        gastos.add(new Gastos("24 MAR 2023", 546,"Ropa"));
+        gastos.add(new Gastos("17 FEB 2023", 367,"Salud"));
+        gastos.add(new Gastos("10 ABR 2023", 123,"Alimentación"));
+        gastos.add(new Gastos("15 FEB 2023", 55,"Salud"));
+        gastos.add(new Gastos("16 MAR 2023", 13,"Vivienda"));
+        gastos.add(new Gastos("19 ABR 2023", 68,"Educación"));
+        gastos.add(new Gastos("12 ABR 2023", 907,"Vivienda"));
+        gastos.add(new Gastos("27 MAR 2023", 1356,"Educación"));
+        gastos.add(new Gastos("29 ENE 2023", 25,"Alimentación"));
+        gastos.add(new Gastos("30 FEB 2023", 15,"Vivienda"));
+        gastos.add(new Gastos("23 ENE 2023", 76,"Ropa"));
+        gastos.add(new Gastos("15 FEB 2023", 845,"Educación"));
+
         initDatePicker();
         dateButton = findViewById(R.id.datePickerButton);
         dateButton.setText(getTodaysDate());

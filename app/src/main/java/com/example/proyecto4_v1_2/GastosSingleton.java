@@ -5,8 +5,6 @@ import java.util.List;
 import java.util.Map;
 
 public class GastosSingleton {
-    private static GastosSingleton instanceGastosSingleton = GastosSingleton();
-    private Map<String, List<String>> gastosHistory;
 
 
 }
