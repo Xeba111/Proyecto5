@@ -167,9 +167,9 @@ public class SecondActivity extends AppCompatActivity {
 
             public void imprimir(int position)
             {
-                tv1.setText("Fecha: " + mainSingleton.getListaGastos().get(position).getFecha());
-                tv2.setText("Valor: " + mainSingleton.getListaGastos().get(position).getValor());
-                tv3.setText("Tipo: " + mainSingleton.getListaGastos().get(position).getTipo());
+                tv1.setText(mainSingleton.getListaGastos().get(position).getFecha());
+                tv2.setText(mainSingleton.getListaGastos().get(position).getValor().toString());
+                tv3.setText(mainSingleton.getListaGastos().get(position).getTipo());
             }
 
             @Override

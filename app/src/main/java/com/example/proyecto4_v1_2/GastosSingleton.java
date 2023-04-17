@@ -25,22 +25,6 @@ public class GastosSingleton {
         mapaLimites.put("Educacion", 99999999.9);
         mapaLimites.put("Ropa", 99999999.9);
 
-        addGasto("23 ENE 2023", 345, "Alimentacion");
-        addGasto("15 FEB 2023", 25, "Ropa");
-        addGasto("18 ENE 2023", 10, "Vivienda");
-        addGasto("26 MAR 2023", 150, "EducaciON");
-        addGasto("09 ABR 2023", 90, "Vivienda");
-        addGasto("10 ENE 2023", 56, "Alimentacion");
-        addGasto("12 FEB 2023", 89, "Vivienda");
-        addGasto("24 MAR 2023", 546, "Ropa");
-        addGasto("17 FEB 2023", 367, "Salud");
-        addGasto("10 ABR 2023", 123, "Alimentacion");
-        addGasto("15 FEB 2023", 55, "Salud");
-        addGasto("16 MAR 2023", 13, "Vivienda");
-        addGasto("19 ABR 2023", 68, "Educacion");
-        addGasto("12 ABR 2023", 907, "Vivienda");
-        addGasto("27 MAR 2023", 1356, "Educacion");
-        addGasto("23 ENE 2023", 76, "Ropa");
     }
 
     public List<Gastos> getListaGastos() {
