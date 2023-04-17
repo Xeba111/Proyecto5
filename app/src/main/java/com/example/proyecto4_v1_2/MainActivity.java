@@ -91,9 +91,6 @@ public class MainActivity extends AppCompatActivity {
         datePickerDialog.show();
     }
 
-    public void launchSegundaPantalla(View view) {
-
-    }
 
     public void startSecondActivity(View view){
         Intent intent = new Intent(MainActivity.this, SecondActivity.class);
