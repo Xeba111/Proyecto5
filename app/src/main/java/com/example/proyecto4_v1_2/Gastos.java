@@ -5,12 +5,17 @@ public class Gastos
     String fecha ;
     double valor = 0.0;
     String tipo;
+    int limite;
 
 
     public Gastos(String fecha,double valor, String tipo){
         this.fecha= fecha;
         this.tipo = tipo;
         this.valor = valor;
+    }
+    public Gastos(String tipo, int limite){
+        this.tipo = tipo;
+        this.limite = limite;
     }
 
     public String getFecha()
@@ -27,4 +32,14 @@ public class Gastos
         return tipo;
     }
 
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public void setLimite(int limite) {
+        this.limite = limite;
+    }
+    public Integer getLimite(){
+        return limite;
+    }
 }
