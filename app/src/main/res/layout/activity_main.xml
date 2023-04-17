@@ -52,7 +52,7 @@
         android:onClick="openDatePicker"
         android:text="JAN 01 2023"
         android:textColor="@color/black"
-        android:textSize="30sp"
+        android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -61,7 +61,7 @@
         app:layout_constraintVertical_bias="0.15" />
 
     <Spinner
-        android:id="@+id/spinner"
+        android:id="@+id/spinnerTipos"
         android:layout_width="409dp"
         android:layout_height="48dp"
         android:textColor="@color/black"
@@ -73,12 +73,12 @@
         app:layout_constraintVertical_bias="0.569" />
 
     <EditText
-        android:id="@+id/editTextNumber"
+        android:id="@+id/editTextValor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="number"
-        android:textSize="22sp"
+        android:inputType="numberDecimal"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -86,7 +86,8 @@
         app:layout_constraintVertical_bias="0.366" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/botonIngresar"
+        android:onClick="ingresarGasto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Ingresar"

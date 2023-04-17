@@ -1,6 +1,8 @@
 package com.example.proyecto4_v1_2;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.AlertDialog;
@@ -8,49 +10,45 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
 
-import java.util.ArrayList;
+import org.jetbrains.annotations.NonNls;
+
 import java.util.Calendar;
 
 public class SecondActivity extends AppCompatActivity {
-    ArrayList<Gastos> gastos;
-    RecyclerView rv1;
+
+    private RecyclerView rv1;
     private DatePickerDialog datePickerDialog;
     private Button dateButton;
+
+    private TextView tv1, tv2, tv3;
+
+    private GastosSingleton mainSingleton = GastosSingleton.useSingleton();
+
+    private GastosAdapter gastosAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
-        gastos =new ArrayList<Gastos>();
-       // rv1 = findViewById(R.id.)
-        gastos.add(new Gastos("23 ENE 2023", 345,"Alimentacion"));
-        gastos.add(new Gastos("15 FEB 2023", 25,"Ropa"));
-        gastos.add(new Gastos("18 ENE 2023", 10,"Vivienda"));
-        gastos.add(new Gastos("26 MAR 2023", 150,"Educación"));
-        gastos.add(new Gastos("09 ABR 2023", 90,"Vivienda"));
-        gastos.add(new Gastos("10 ENE 2023", 56,"Alimentación"));
-        gastos.add(new Gastos("12 FEB 2023", 89,"Vivienda"));
-        gastos.add(new Gastos("24 MAR 2023", 546,"Ropa"));
-        gastos.add(new Gastos("17 FEB 2023", 367,"Salud"));
-        gastos.add(new Gastos("10 ABR 2023", 123,"Alimentación"));
-        gastos.add(new Gastos("15 FEB 2023", 55,"Salud"));
-        gastos.add(new Gastos("16 MAR 2023", 13,"Vivienda"));
-        gastos.add(new Gastos("19 ABR 2023", 68,"Educación"));
-        gastos.add(new Gastos("12 ABR 2023", 907,"Vivienda"));
-        gastos.add(new Gastos("27 MAR 2023", 1356,"Educación"));
-        gastos.add(new Gastos("29 ENE 2023", 25,"Alimentación"));
-        gastos.add(new Gastos("30 FEB 2023", 15,"Vivienda"));
-        gastos.add(new Gastos("23 ENE 2023", 76,"Ropa"));
-        gastos.add(new Gastos("15 FEB 2023", 845,"Educación"));
-
         initDatePicker();
         dateButton = findViewById(R.id.datePickerButton);
         dateButton.setText(getTodaysDate());
+
+        LinearLayoutManager l = new LinearLayoutManager(this);
+
+        gastosAdapter = new GastosAdapter();
+
+        rv1 = (RecyclerView) findViewById(R.id.recyclerGastos);
+        rv1.setAdapter(gastosAdapter);
+        rv1.setLayoutManager(l);
 
         Spinner optionSpinner = (Spinner) findViewById(R.id.spinner);
 
@@ -122,5 +120,94 @@ public class SecondActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+//    public void eliminar(View view)
+//    {
+//        int pos = -1;
+//        for (int i = 0; i< mainSingleton.getListaGastos().size(); i++)
+//        {
+//            if(mainSingleton.getListaGastos().get(i).getValor() == )
+//        }
+//    }
 
+    private class GastosAdapter extends RecyclerView.Adapter<GastosAdapter.GastosAdapterHolder>
+    {
+        @NonNull
+        @Override
+        public GastosAdapterHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
+        {
+            return new GastosAdapterHolder(getLayoutInflater().inflate(R.layout.itemsgastos, parent, false));
+        }
+
+        @Override
+        public void onBindViewHolder(@NonNull GastosAdapterHolder holder, int position)
+        {
+            holder.imprimir(position);
+        }
+
+        @Override
+        public int getItemCount() {
+            return mainSingleton.getListaGastos().size();
+        }
+
+        class GastosAdapterHolder extends RecyclerView.ViewHolder implements View.OnClickListener
+        {
+            TextView tv1, tv2, tv3;
+
+            public GastosAdapterHolder(@NonNull View itemView)
+            {
+                super(itemView);
+                tv1 = itemView.findViewById(R.id.tvFecha);
+                tv2 = itemView.findViewById(R.id.tvValor);
+                tv3 = itemView.findViewById(R.id.tvTipo);
+
+
+
+                itemView.setOnClickListener(this);
+            }
+
+            public void imprimir(int position)
+            {
+                tv1.setText(mainSingleton.getListaGastos().get(position).getFecha());
+                tv2.setText(mainSingleton.getListaGastos().get(position).getValor().toString());
+                tv3.setText(mainSingleton.getListaGastos().get(position).getTipo());
+            }
+
+            @Override
+            public void onClick(View v)
+            {
+                //mostrar(getLayoutPosition());
+            }
+
+//            public void eliminar(View view)
+//            {
+//                int pos = -1;
+//                for(int i = 0; i < mainSingleton.getListaGastos().size(); i++)
+//                {
+//                    String valorString = tv2.getText().toString();
+//                    double valor = Double.parseDouble(valorString);
+//
+//                    if(mainSingleton.getListaGastos().get(i).getValor() == valor) {
+//                        pos = i;
+//                    }
+//                }
+//                if(pos != -1)
+//                {
+//                    mainSingleton.getListaGastos().remove(pos);
+//                    gastosAdapter.notifyDataSetChanged();
+//                    Toast.makeText(SecondActivity.this, "SE ELIMINÓ LA PERSONA", Toast.LENGTH_SHORT).show();
+//                }
+//                else
+//                {
+//                    Toast.makeText(SecondActivity.this, "NO EXISTE LA PERSONA", Toast.LENGTH_SHORT).show();
+//                }
+//            }
+
+        }
+    }
+
+    public void resetRecycler(View view) {
+    }
+
+    public void filtrarRecycler(View view) {
+    }
 }
