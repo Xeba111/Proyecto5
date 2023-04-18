@@ -6,18 +6,27 @@ import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
 
+    private EditText campoValor;
+
+    private Spinner optionSpinner;
+
     private DatePickerDialog datePickerDialog;
     private Button dateButton;
+
+    private GastosSingleton mainSingleton = GastosSingleton.useSingleton();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,8 +35,9 @@ public class MainActivity extends AppCompatActivity {
         initDatePicker();
         dateButton =  findViewById(R.id.datePickerButton);
         dateButton.setText(getTodaysDate());
+        campoValor = (EditText) findViewById(R.id.editTextValor);
 
-        Spinner optionSpinner = (Spinner) findViewById(R.id.spinner);
+        optionSpinner = (Spinner) findViewById(R.id.spinnerTipos);
 
         ArrayAdapter<String> optionAdapter = new ArrayAdapter<String>(MainActivity.this,
                 android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.options));
@@ -91,9 +101,6 @@ public class MainActivity extends AppCompatActivity {
         datePickerDialog.show();
     }
 
-    public void launchSegundaPantalla(View view) {
-
-    }
 
     public void startSecondActivity(View view){
         Intent intent = new Intent(MainActivity.this, SecondActivity.class);
@@ -103,5 +110,45 @@ public class MainActivity extends AppCompatActivity {
     public void startThirdActivity(View view){
         Intent intent = new Intent(MainActivity.this, ThirdActivity.class);
         startActivity(intent);
+    }
+
+    public void cargarDatos(View view){
+        mainSingleton.addGasto("23 ENE 2023", 345.54, "Alimentacion");
+        mainSingleton.addGasto("15 FEB 2023", 25.12, "Ropa");
+        mainSingleton.addGasto("18 ENE 2023", 10.23, "Vivienda");
+        mainSingleton.addGasto("26 MAR 2023", 150.75, "Educacion");
+        mainSingleton.addGasto("09 ABR 2023", 90.67, "Vivienda");
+        mainSingleton.addGasto("10 ENE 2023", 56.21, "Alimentacion");
+        mainSingleton.addGasto("12 FEB 2023", 89.12, "Vivienda");
+        mainSingleton.addGasto("24 MAR 2023", 546.12, "Ropa");
+        mainSingleton.addGasto("17 FEB 2023", 367.23, "Salud");
+        mainSingleton.addGasto("10 ABR 2023", 123.21, "Alimentacion");
+        mainSingleton.addGasto("15 FEB 2023", 55.89, "Salud");
+        mainSingleton.addGasto("16 MAR 2023", 13.98, "Vivienda");
+        mainSingleton.addGasto("19 ABR 2023", 68.76, "Educacion");
+        mainSingleton.addGasto("12 ABR 2023", 907.12, "Vivienda");
+        mainSingleton.addGasto("27 MAR 2023", 1356.23, "Educacion");
+        mainSingleton.addGasto("23 ENE 2023", 76.12, "Ropa");
+    }
+
+    public void ingresarGasto(View view) {
+
+        String fecha = dateButton.getText().toString();
+        String valorString = campoValor.getText().toString();
+        double valor = Double.parseDouble(valorString);
+        String tipo = optionSpinner.getSelectedItem().toString();
+        if (valor > mainSingleton.getLimite(tipo)){
+            Toast.makeText(this,"El valor exede el limite",Toast.LENGTH_LONG).show();
+        }else {
+            mainSingleton.addGasto(fecha, valor, tipo);
+        }
+
+        campoValor.setText("0.0");
+        dateButton.setText(getTodaysDate());
+
+
+
+        Log.d("DEBUG", fecha + "  " + valorString + "   " + tipo );
+
     }
 }
