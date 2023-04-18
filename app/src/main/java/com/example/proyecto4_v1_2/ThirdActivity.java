@@ -62,6 +62,7 @@ public class ThirdActivity extends AppCompatActivity {
         String stringlimite = campolimite.getText().toString();
         double limite = Double.parseDouble(stringlimite);
        mainSingleton.setLimite(tipo,limite);
+       Toast.makeText(this,"Se agrego el tipo y el limite correctamente",Toast.LENGTH_LONG).show();
 
     }
 
@@ -108,7 +109,7 @@ public class ThirdActivity extends AppCompatActivity {
     mainSingleton.setLimite(stringsalud,limsal);
     mainSingleton.setLimite(stringeducacion,limedu);
     mainSingleton.setLimite(stringropa,limrop);
-
+    Toast.makeText(this,"Se modificaron los limites correctamente",Toast.LENGTH_LONG).show();
 
     }
 
