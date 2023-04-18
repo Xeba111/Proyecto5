@@ -49,5 +49,8 @@ public class GastosSingleton {
     public void setLimite(String tipo, double limite)
     {
         mapaLimites.put(tipo, limite);
+        System.out.println(mapaLimites);
     }
+
+
 }

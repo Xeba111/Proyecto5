@@ -32,14 +32,5 @@ public class Gastos
         return tipo;
     }
 
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
 
-    public void setLimite(int limite) {
-        this.limite = limite;
-    }
-    public Integer getLimite(){
-        return limite;
-    }
 }
