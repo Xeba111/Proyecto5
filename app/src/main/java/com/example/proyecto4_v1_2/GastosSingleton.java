@@ -32,7 +32,9 @@ public class GastosSingleton {
     }
 
     public double getLimite(String tipo) {
+
         return mapaLimites.get(tipo);
+
     }
 
     public void addGasto(String date, double value, String type) {
@@ -49,5 +51,8 @@ public class GastosSingleton {
     public void setLimite(String tipo, double limite)
     {
         mapaLimites.put(tipo, limite);
+        System.out.println(mapaLimites);
     }
+
+
 }

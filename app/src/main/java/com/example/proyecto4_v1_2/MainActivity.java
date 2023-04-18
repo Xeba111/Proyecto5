@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import java.util.Calendar;
 
@@ -136,11 +137,16 @@ public class MainActivity extends AppCompatActivity {
         String valorString = campoValor.getText().toString();
         double valor = Double.parseDouble(valorString);
         String tipo = optionSpinner.getSelectedItem().toString();
-
-        mainSingleton.addGasto(fecha, valor, tipo);
+        if (valor > mainSingleton.getLimite(tipo)){
+            Toast.makeText(this,"El valor exede el limite",Toast.LENGTH_LONG).show();
+        }else {
+            mainSingleton.addGasto(fecha, valor, tipo);
+        }
 
         campoValor.setText("0.0");
         dateButton.setText(getTodaysDate());
+
+
 
         Log.d("DEBUG", fecha + "  " + valorString + "   " + tipo );
 
