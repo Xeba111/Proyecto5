@@ -32,13 +32,12 @@ public class ThirdActivity extends AppCompatActivity {
     private Spinner optionSpinner;
     private GastosSingleton mainSingleton = GastosSingleton.useSingleton();
 
-    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_third);
 
-        campoTipo=findViewById(R.id.etp);
+        campoTipo= findViewById(R.id.etp);
         campolimite=findViewById(R.id.etlimite);
         campoVivienda = findViewById(R.id.etvivienda);
         campoAlimentacion = findViewById(R.id.etalimentacion);
