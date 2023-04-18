@@ -5,25 +5,34 @@
 
     <TextView
         android:id="@+id/tvFecha"
-        android:layout_width="wrap_content"
+        android:layout_width="82dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:gravity="left"
+        android:paddingVertical="2sp"
         android:text="fecha"
-        android:textSize="20sp" />
+        android:textAlignment="gravity"
+        android:textSize="15sp" />
 
     <TextView
         android:id="@+id/tvValor"
-        android:layout_width="wrap_content"
+        android:layout_width="69dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:gravity="center"
+        android:paddingVertical="2sp"
         android:text="valor"
-        android:textSize="20sp" />
+        android:textAlignment="gravity"
+        android:textSize="15sp" />
 
     <TextView
         android:id="@+id/tvTipo"
-        android:layout_width="wrap_content"
+        android:layout_width="45dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:gravity="right"
+        android:paddingVertical="2sp"
         android:text="tipo"
-        android:textSize="20sp" />
+        android:textAlignment="gravity"
+        android:textSize="15sp" />
 </LinearLayout>

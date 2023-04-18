@@ -28,7 +28,7 @@ public class SecondActivity extends AppCompatActivity {
     private DatePickerDialog datePickerDialog;
     private Button dateButton;
 
-    private TextView tv1, tv2, tv3;
+    private TextView tv1;
 
     private GastosSingleton mainSingleton = GastosSingleton.useSingleton();
 
@@ -46,6 +46,7 @@ public class SecondActivity extends AppCompatActivity {
 
         gastosAdapter = new GastosAdapter();
 
+        tv1 = (TextView) findViewById(R.id.textGetPosition);
         rv1 = (RecyclerView) findViewById(R.id.recyclerGastos);
         rv1.setAdapter(gastosAdapter);
         rv1.setLayoutManager(l);
@@ -120,14 +121,35 @@ public class SecondActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-//    public void eliminar(View view)
-//    {
-//        int pos = -1;
-//        for (int i = 0; i< mainSingleton.getListaGastos().size(); i++)
-//        {
-//            if(mainSingleton.getListaGastos().get(i).getValor() == )
-//        }
-//    }
+    public void mostrar(int pos)
+    {
+        tv1.setText(mainSingleton.getListaGastos().get(pos).getValor().toString());
+    }
+
+    public void eliminar(View view)
+    {
+        int pos = -1;
+        for(int i = 0; i < mainSingleton.getListaGastos().size(); i++)
+        {
+            String valorString = tv1.getText().toString();
+            double valor = Double.parseDouble(valorString);
+
+            if(mainSingleton.getListaGastos().get(i).getValor() == valor) {
+                pos = i;
+            }
+        }
+        if(pos != -1)
+        {
+            mainSingleton.getListaGastos().remove(pos);
+            gastosAdapter.notifyDataSetChanged();
+            tv1.setText("");
+            Toast.makeText(SecondActivity.this, "SE ELIMINÓ LA PERSONA", Toast.LENGTH_SHORT).show();
+        }
+        else
+        {
+            Toast.makeText(SecondActivity.this, "NO EXISTE LA PERSONA", Toast.LENGTH_SHORT).show();
+        }
+    }
 
     private class GastosAdapter extends RecyclerView.Adapter<GastosAdapter.GastosAdapterHolder>
     {
@@ -142,6 +164,7 @@ public class SecondActivity extends AppCompatActivity {
         public void onBindViewHolder(@NonNull GastosAdapterHolder holder, int position)
         {
             holder.imprimir(position);
+
         }
 
         @Override
@@ -160,8 +183,6 @@ public class SecondActivity extends AppCompatActivity {
                 tv2 = itemView.findViewById(R.id.tvValor);
                 tv3 = itemView.findViewById(R.id.tvTipo);
 
-
-
                 itemView.setOnClickListener(this);
             }
 
@@ -175,32 +196,8 @@ public class SecondActivity extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
-                //mostrar(getLayoutPosition());
+                mostrar(getLayoutPosition());
             }
-
-//            public void eliminar(View view)
-//            {
-//                int pos = -1;
-//                for(int i = 0; i < mainSingleton.getListaGastos().size(); i++)
-//                {
-//                    String valorString = tv2.getText().toString();
-//                    double valor = Double.parseDouble(valorString);
-//
-//                    if(mainSingleton.getListaGastos().get(i).getValor() == valor) {
-//                        pos = i;
-//                    }
-//                }
-//                if(pos != -1)
-//                {
-//                    mainSingleton.getListaGastos().remove(pos);
-//                    gastosAdapter.notifyDataSetChanged();
-//                    Toast.makeText(SecondActivity.this, "SE ELIMINÓ LA PERSONA", Toast.LENGTH_SHORT).show();
-//                }
-//                else
-//                {
-//                    Toast.makeText(SecondActivity.this, "NO EXISTE LA PERSONA", Toast.LENGTH_SHORT).show();
-//                }
-//            }
 
         }
     }
